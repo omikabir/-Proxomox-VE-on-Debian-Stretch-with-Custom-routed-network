@@ -76,51 +76,51 @@ iface vmbr4 inet static
 	bridge-stp off
 	bridge-fd 0
 
-	#Allowing All Loopback traffic
-	post-up iptables -A INPUT -i lo -j ACCEPT
-	post-up iptables -A OUTPUT -o lo -j ACCEPT
+#Allowing All Loopback traffic
+post-up iptables -A INPUT -i lo -j ACCEPT
+post-up iptables -A OUTPUT -o lo -j ACCEPT
 	
-	#POSTROUTING with SNAT Starts Here
-	#Rules Snipet NAT :: vmbr3
-	post-up   iptables -t nat -A POSTROUTING -s '10.10.10.0/24' -o vmbr0 -j SNAT --to-source 161.129.154.3
-	post-down iptables -t nat -D POSTROUTING -s '10.10.10.0/24' -o vmbr0 -j SNAT --to-source 161.129.154.3
+#POSTROUTING with SNAT Starts Here
+#Rules Snipet NAT :: vmbr3
+post-up iptables -t nat -A POSTROUTING -s '10.10.10.0/24' -o vmbr0 -j SNAT --to-source 161.129.154.3
+post-down iptables -t nat -D POSTROUTING -s '10.10.10.0/24' -o vmbr0 -j SNAT --to-source 161.129.154.3
 	
-	#Rules Snipet NAT :: vmbr4
-	post-up iptables -t nat -A POSTROUTING -s '192.168.50.0/24' -o vmbr0 -j SNAT --to-source 161.129.154.4
-	post-down iptables -t nat -A POSTROUTING -s '192.168.50.0/24' -o vmbr0 -j SNAT --to-source 161.129.154.4
-	### POSTROUTING with SNAT Ends Here
+#Rules Snipet NAT :: vmbr4
+post-up iptables -t nat -A POSTROUTING -s '192.168.50.0/24' -o vmbr0 -j SNAT --to-source 161.129.154.4
+post-down iptables -t nat -A POSTROUTING -s '192.168.50.0/24' -o vmbr0 -j SNAT --to-source 161.129.154.4
+### POSTROUTING with SNAT Ends Here
 	
-	#PREROUTING with DNAT Starts here & is for RDP Access#
-	#vmbr3
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5001 -j DNAT --to 10.10.10.101:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5002 -j DNAT --to 10.10.10.102:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5003 -j DNAT --to 10.10.10.103:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5004 -j DNAT --to 10.10.10.104:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5005 -j DNAT --to 10.10.10.105:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5006 -j DNAT --to 10.10.10.106:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5007 -j DNAT --to 10.10.10.107:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5008 -j DNAT --to 10.10.10.108:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5009 -j DNAT --to 10.10.10.109:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5010 -j DNAT --to 10.10.10.110:3389
+#PREROUTING with DNAT Starts here & is for RDP Access#
+#vmbr3
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5001 -j DNAT --to 10.10.10.101:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5002 -j DNAT --to 10.10.10.102:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5003 -j DNAT --to 10.10.10.103:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5004 -j DNAT --to 10.10.10.104:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5005 -j DNAT --to 10.10.10.105:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5006 -j DNAT --to 10.10.10.106:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5007 -j DNAT --to 10.10.10.107:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5008 -j DNAT --to 10.10.10.108:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5009 -j DNAT --to 10.10.10.109:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.3 -p tcp --dport 5010 -j DNAT --to 10.10.10.110:3389
 	
-	#vmbr4
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5021 -j DNAT --to 192.168.50.121:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5022 -j DNAT --to 192.168.50.122:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5023 -j DNAT --to 192.168.50.123:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5024 -j DNAT --to 192.168.50.124:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5025 -j DNAT --to 192.168.50.125:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5026 -j DNAT --to 192.168.50.126:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5027 -j DNAT --to 192.168.50.127:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5028 -j DNAT --to 192.168.50.128:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5029 -j DNAT --to 192.168.50.129:3389
-	post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5030 -j DNAT --to 192.168.50.130:3389
-	#PREROUTING Section Ends here & is for RDP Access#
+#vmbr4
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5021 -j DNAT --to 192.168.50.121:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5022 -j DNAT --to 192.168.50.122:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5023 -j DNAT --to 192.168.50.123:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5024 -j DNAT --to 192.168.50.124:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5025 -j DNAT --to 192.168.50.125:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5026 -j DNAT --to 192.168.50.126:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5027 -j DNAT --to 192.168.50.127:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5028 -j DNAT --to 192.168.50.128:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5029 -j DNAT --to 192.168.50.129:3389
+post-up iptables -t nat -A PREROUTING -i vmbr0 -d 161.129.154.4 -p tcp --dport 5030 -j DNAT --to 192.168.50.130:3389
+#PREROUTING Section Ends here & is for RDP Access#
 	
-	#Everything Will MASQUERADE to vmbr0
+#Everything Will MASQUERADE to vmbr0
 	
-	post-up   iptables -t nat -A POSTROUTING -o vmbr0 -j MASQUERADE
-	post-down iptables -t nat -D POSTROUTING -o vmbr0 -j MASQUERADE
+post-up iptables -t nat -A POSTROUTING -o vmbr0 -j MASQUERADE
+post-down iptables -t nat -D POSTROUTING -o vmbr0 -j MASQUERADE
 	
-	#END
+#END
 ```
 
