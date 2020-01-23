@@ -1,16 +1,11 @@
-# -Proxomox-VE-on-Debian-Stretch-with-Custom-routed-network
-Networking from Host to Guest using Bridge, NAT and Custom Routed Configuration
+# Proxomox-VE-on-Debian-Stretch-with-Custom-routed-network
+Networking from Host to Guest using Bridge, NAT and Custom Routed Configuration.
+Configuration applied to enable access for 22 Windows VM using 5 Public IP address on dedicated virtual machine as following
+![Prox_Snip](https://user-images.githubusercontent.com/31945294/72996603-3446f900-3e25-11ea-984e-66749430d006.PNG)
 
-In Official Proxomox VE website, https://pve.proxmox.com/wiki/Network_Configuration
+Configuration Prototype can be found In Official Proxomox VE website, https://pve.proxmox.com/wiki/Network_Configuration
 
-Three Type of Network Configuration model Described using 
-  1. Default Bride Configuration
-  2. Routed Configuration
-  3. Masquerading (NAT) with iptables
 
-In this single Configuration, above three models implemented together, including some extras as 
-  1. DHCP implementation using Dnsmasq
-  2. Using Linux Bond
 
 
 
