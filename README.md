@@ -1,6 +1,6 @@
-### Multiple Windows VPS on Virtual dedicated server Using 5 IP address on hosting Providers platform over Debian Stretch with Proxmox Custom routed network, that enables RDP access to to each VM with seperate port.
+#### Multiple Windows VPS on Virtual dedicated server Using 5 IP address on hosting Providers platform over Debian Stretch with Proxmox Custom routed network, that enables RDP access to to each VM with seperate port.
 
-###### Network Configuration done as following image. Configuration Prototype can be found In Official [Proxomox VE website], (https://pve.proxmox.com/wiki/Network_Configuration) 
+##### Network Configuration done as following image. Configuration Prototype can be found In Official [Proxomox VE website], (https://pve.proxmox.com/wiki/Network_Configuration) 
 
 ![Prox111](https://user-images.githubusercontent.com/31945294/73002281-fbf7e880-3e2d-11ea-87b5-2f18745fd5bd.jpg)
 
@@ -123,16 +123,16 @@ post-down iptables -t nat -D POSTROUTING -o vmbr0 -j MASQUERADE
 #END
 ```
 
-###### rules on >/etc/network/interfaces always loads at start up
+##### rules on >/etc/network/interfaces always loads at start up
 
-###### With Above Configuration, Need to enable ip forwarding. Although the rules placed on above, for further confirmation u following code, required to be executed.
+##### With Above Configuration, Need to enable ip forwarding. Although the rules placed on above, for further confirmation u following code, required to be executed.
 ```
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 echo "net.ipv4.conf.all.forwarding=1" >> /etc/sysctl.conf
 echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
 sysctl -p
 ```
-###### Finally Restart Networking
+##### Finally Restart Networking
 ```
 /etc/init.d/networking restart
 ```
