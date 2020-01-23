@@ -1,9 +1,8 @@
-# Proxomox-VE-on-Debian-Stretch-with-Custom-routed-network
-Networking from Host to Guest using Bridge, NAT and Custom Routed Configuration.
-Configuration applied to enable access for 22 Windows VM using 5 Public IP address on dedicated virtual machine as following
-![Prox_Snip](https://user-images.githubusercontent.com/31945294/72996603-3446f900-3e25-11ea-984e-66749430d006.PNG)
+# multiple VPS on Virtual dedicated server using Proxomox VE on Debian Stretch with Custom routed network 
 
-Configuration Prototype can be found In Official Proxomox VE website, https://pve.proxmox.com/wiki/Network_Configuration
+## Configuration applied on dedicated virtual machine to enable access for 22 Windows VM using 5 Public IP address as following Image
+
+![Prox111](https://user-images.githubusercontent.com/31945294/73002281-fbf7e880-3e2d-11ea-87b5-2f18745fd5bd.jpg)
 
 
 
