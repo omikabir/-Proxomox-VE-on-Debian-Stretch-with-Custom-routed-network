@@ -1,4 +1,4 @@
-#### Multiple Windows VPS on Virtual dedicated server Using 5 IP address on hosting Providers platform over Debian Stretch with Proxmox Custom routed network, that enables RDP access to to each VM with seperate port.
+#### Multiple Windows VPS on Virtual dedicated server Using 5 IP address on hosting Providers platform over Debian Stretch with Proxmox Custom routed network, that enables RDP access to to each VM with port forwarding.
 
 ##### Network Configuration done as following image. Configuration Prototype can be found In Official [Proxomox VE website], (https://pve.proxmox.com/wiki/Network_Configuration) 
 
