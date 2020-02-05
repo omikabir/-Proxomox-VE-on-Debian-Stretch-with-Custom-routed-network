@@ -123,7 +123,7 @@ post-down iptables -t nat -D POSTROUTING -o vmbr0 -j MASQUERADE
 
 ##### rules on >/etc/network/interfaces always loads at start up
 
-##### With Above Configuration, Need to enable ip forwarding. Although the rules placed on above, for further confirmation u following code, required to be executed.
+##### With Above Configuration, Need to enable ip forwarding.
 ```
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 echo "net.ipv4.conf.all.forwarding=1" >> /etc/sysctl.conf
